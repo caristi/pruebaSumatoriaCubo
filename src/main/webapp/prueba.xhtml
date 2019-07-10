@@ -49,8 +49,11 @@
 				        </h:panelGrid>
 		        	</p:dataGrid>
 		       </p:dataGrid> 
-		       
-		        <p:commandButton value="Calcular" action="#{cuboController.calcular}" update="dlResultado" />
+			    
+			    
+			    <p:messages showDetail="true" autoUpdate="true" closable="true" />
+		        
+		        <p:commandButton value="Calcular" action="#{cuboController.calcular}" update="@form" process="@form"/>
 		        
 		         <p:dataList id="dlResultado" value="#{cuboController.listaResultados}" var="resul">
 			        <f:facet name="header">

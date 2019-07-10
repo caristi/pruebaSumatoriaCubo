@@ -3,15 +3,21 @@ package com.prueba.cubo.sumatoriaCubo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.prueba.cubo.sumatoriaCubo.Constantes.IConstantes;
 import com.prueba.cubo.sumatoriaCubo.model.BloqueMatriz;
 import com.prueba.cubo.sumatoriaCubo.model.BloqueTexto;
 import com.prueba.cubo.sumatoriaCubo.model.Cubo;
 import com.prueba.cubo.sumatoriaCubo.service.IOperacionesMatrizSrv;
+import com.prueba.cubo.sumatoriaCubo.serviceValidacion.ValidacionesSumaCubo;
 
 @Service
 public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
+	
+	@Autowired
+	ValidacionesSumaCubo validacion;
 	
 	private static int[][][] matriz3D;
 	
@@ -24,11 +30,15 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 	
 	public List<Integer> calcular(Cubo cubo) {
 		
+		validacion.validarDatosCubo(cubo);
+		
 		List<Integer> listaResultados = new ArrayList<>();
 		
 		int numResulta;
 		
 		for(BloqueMatriz bloqueMatriz:cubo.getListaBloqueMatriz()) {
+			
+			validacion.validarDatosBloqueMatriz(bloqueMatriz);
 			
 			inicializarMatriz(bloqueMatriz.getTamanioMatriz());
 			
@@ -38,12 +48,12 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 					
 					String[] vectorTexto = bloqueTexto.getCoordenasMatriz().split(" ");
 					
-					if(bloqueTexto.getOperacion().equals("UPDATE")) {
-						actualizarMatriz(vectorTexto);
+					if(bloqueTexto.getOperacion().equals(IConstantes.UPDATE)) {
+						actualizarMatriz(vectorTexto,bloqueMatriz.getTamanioMatriz());
 						
-					}else if(bloqueTexto.getOperacion().equals("QUERY")) {
+					}else if(bloqueTexto.getOperacion().equals(IConstantes.QUERY)) {
 						
-						numResulta = calculoSuma(vectorTexto);
+						numResulta = calculoSuma(vectorTexto,bloqueMatriz.getTamanioMatriz());
 						listaResultados.add(numResulta);
 					}
 				}
@@ -66,30 +76,34 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 		}
 	}
 	
-	public void actualizarMatriz(String[] vectorTexto) {
+	public void actualizarMatriz(String[] vectorTexto,int tamanioMatriz) {
 		
 		int valorActualizar;
 		
-		x1 = Integer.parseInt(vectorTexto[0]) - 1;
+		x1 = Integer.parseInt(vectorTexto[0]);
 		
-		y1 = Integer.parseInt(vectorTexto[1]) - 1;
+		y1 = Integer.parseInt(vectorTexto[1]);
 		
-		z1 = Integer.parseInt(vectorTexto[2]) - 1;
+		z1 = Integer.parseInt(vectorTexto[2]);
 
 		valorActualizar = Integer.parseInt(vectorTexto[3]);
 		
-		matriz3D[x1][y1][z1] = valorActualizar;
+		validacion.validarNumeroActualizar(valorActualizar);
+		
+		validacion.validarDatosBloqueTextoUpdate(x1,y1,z1,tamanioMatriz);
+		
+		matriz3D[x1-1][y1-1][z1-1] = valorActualizar;
 	}
 	
-	public int calculoSuma(String[] vectorTexto) {
+	public int calculoSuma(String[] vectorTexto,int tamanioMatriz) {
 		
 		int suma = 0;
 		
-		x1 = Integer.parseInt(vectorTexto[0]) - 1;
+		x1 = Integer.parseInt(vectorTexto[0]);
 		
-		y1 = Integer.parseInt(vectorTexto[1]) - 1;
+		y1 = Integer.parseInt(vectorTexto[1]);
 		
-		z1 = Integer.parseInt(vectorTexto[2]) - 1;
+		z1 = Integer.parseInt(vectorTexto[2]);
 		
 		x2 = Integer.parseInt(vectorTexto[3]);
 		
@@ -97,9 +111,11 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 		
 		z2 = Integer.parseInt(vectorTexto[5]);
 		
-		for(int z=z1; z<z2; z++) {
-			for(int y=y1; y<y2; y++) {
-			  for(int x=x1; x<x2; x++) {
+		validacion.validarDatosBloqueTextoQuery(x1,x2,y1,y2,z1,z2,tamanioMatriz);
+		
+		for(int z=z1 - 1; z<z2; z++) {
+			for(int y=y1 - 1; y<y2; y++) {
+			  for(int x=x1 - 1; x<x2; x++) {
 			    suma = suma + matriz3D[x][y][z];
 			    
 			  }

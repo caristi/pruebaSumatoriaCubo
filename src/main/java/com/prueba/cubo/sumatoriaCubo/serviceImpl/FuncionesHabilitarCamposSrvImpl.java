@@ -3,18 +3,25 @@ package com.prueba.cubo.sumatoriaCubo.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.prueba.cubo.sumatoriaCubo.model.BloqueMatriz;
 import com.prueba.cubo.sumatoriaCubo.model.BloqueTexto;
 import com.prueba.cubo.sumatoriaCubo.model.Cubo;
 import com.prueba.cubo.sumatoriaCubo.service.IFuncionesHabilitarCamposSrv;
+import com.prueba.cubo.sumatoriaCubo.serviceValidacion.ValidacionesSumaCubo;
 
 @Service
 public class FuncionesHabilitarCamposSrvImpl implements IFuncionesHabilitarCamposSrv{
 
+	@Autowired
+	ValidacionesSumaCubo validacion;
+	
 	@Override
 	public Cubo habilitaCantidadCasos(Cubo cubo) {
+		
+		validacion.validarDatosCubo(cubo);
 
 		if(cubo.getNumeroCasosPrueba() > 0) {
 			
