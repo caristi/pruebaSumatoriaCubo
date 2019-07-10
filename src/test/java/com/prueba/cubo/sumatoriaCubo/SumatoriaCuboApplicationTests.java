@@ -53,27 +53,27 @@ public class SumatoriaCuboApplicationTests {
 		
 		BloqueTexto bloqueTexto1 = new BloqueTexto();
 		bloqueTexto1.setOperacion("UPDATE");
-		bloqueTexto1.setCoordenasMatriz("2 2 2 4");
+		bloqueTexto1.setCoordenadasMatriz("2 2 2 4");
 		listaBloqueTextos.add(bloqueTexto1);
 		
 		BloqueTexto bloqueTexto2 = new BloqueTexto();
 		bloqueTexto2.setOperacion("QUERY");
-		bloqueTexto2.setCoordenasMatriz("1 1 1 3 3 3");
+		bloqueTexto2.setCoordenadasMatriz("1 1 1 3 3 3");
 		listaBloqueTextos.add(bloqueTexto2);
 		
 		BloqueTexto bloqueTexto3 = new BloqueTexto();
 		bloqueTexto3.setOperacion("UPDATE");
-		bloqueTexto3.setCoordenasMatriz("1 1 1 23");
+		bloqueTexto3.setCoordenadasMatriz("1 1 1 23");
 		listaBloqueTextos.add(bloqueTexto3);
 		
 		BloqueTexto bloqueTexto4 = new BloqueTexto();
 		bloqueTexto4.setOperacion("QUERY");
-		bloqueTexto4.setCoordenasMatriz("2 2 2 4 4 4");
+		bloqueTexto4.setCoordenadasMatriz("2 2 2 4 4 4");
 		listaBloqueTextos.add(bloqueTexto4);
 		
 		BloqueTexto bloqueTexto5 = new BloqueTexto();
 		bloqueTexto5.setOperacion("QUERY");
-		bloqueTexto5.setCoordenasMatriz("1 1 1 3 3 3");
+		bloqueTexto5.setCoordenadasMatriz("1 1 1 3 3 3");
 		listaBloqueTextos.add(bloqueTexto5);
 		
 		BloqueMatriz bloqueMatriz1 = new BloqueMatriz();
@@ -96,22 +96,22 @@ public class SumatoriaCuboApplicationTests {
 		
 		BloqueTexto bloqueTexto2_1 = new BloqueTexto();
 		bloqueTexto2_1.setOperacion("UPDATE");
-		bloqueTexto2_1.setCoordenasMatriz("2 2 2 1");
+		bloqueTexto2_1.setCoordenadasMatriz("2 2 2 1");
 		listaBloqueTextos2.add(bloqueTexto2_1);
 		
 		BloqueTexto bloqueTexto2_2 = new BloqueTexto();
 		bloqueTexto2_2.setOperacion("QUERY");
-		bloqueTexto2_2.setCoordenasMatriz("1 1 1 1 1 1");
+		bloqueTexto2_2.setCoordenadasMatriz("1 1 1 1 1 1");
 		listaBloqueTextos2.add(bloqueTexto2_2);
 		
 		BloqueTexto bloqueTexto2_3 = new BloqueTexto();
 		bloqueTexto2_3.setOperacion("QUERY");
-		bloqueTexto2_3.setCoordenasMatriz("1 1 1 2 2 2");
+		bloqueTexto2_3.setCoordenadasMatriz("1 1 1 2 2 2");
 		listaBloqueTextos2.add(bloqueTexto2_3);
 		
 		BloqueTexto bloqueTexto2_4 = new BloqueTexto();
 		bloqueTexto2_4.setOperacion("QUERY");
-		bloqueTexto2_4.setCoordenasMatriz("2 2 2 2 2 2");
+		bloqueTexto2_4.setCoordenadasMatriz("2 2 2 2 2 2");
 		listaBloqueTextos2.add(bloqueTexto2_4);
 		
 		BloqueMatriz bloqueMatriz2 = new BloqueMatriz();
@@ -140,27 +140,27 @@ public class SumatoriaCuboApplicationTests {
 		
 		BloqueTexto bloqueTexto1 = new BloqueTexto();
 		bloqueTexto1.setOperacion("UPDATE");
-		bloqueTexto1.setCoordenasMatriz("2 2 2 4");
+		bloqueTexto1.setCoordenadasMatriz("2 2 2 4");
 		listaBloqueTextos.add(bloqueTexto1);
 		
 		BloqueTexto bloqueTexto2 = new BloqueTexto();
 		bloqueTexto2.setOperacion("QUERY");
-		bloqueTexto2.setCoordenasMatriz("1 1 1 3 3 3");
+		bloqueTexto2.setCoordenadasMatriz("1 1 1 3 3 3");
 		listaBloqueTextos.add(bloqueTexto2);
 		
 		BloqueTexto bloqueTexto3 = new BloqueTexto();
 		bloqueTexto3.setOperacion("UPDATE");
-		bloqueTexto3.setCoordenasMatriz("1 1 1 23");
+		bloqueTexto3.setCoordenadasMatriz("1 1 1 23");
 		listaBloqueTextos.add(bloqueTexto3);
 		
 		BloqueTexto bloqueTexto4 = new BloqueTexto();
 		bloqueTexto4.setOperacion("QUERY");
-		bloqueTexto4.setCoordenasMatriz("2 2 2 4 4 4");
+		bloqueTexto4.setCoordenadasMatriz("2 2 2 4 4 4");
 		listaBloqueTextos.add(bloqueTexto4);
 		
 		BloqueTexto bloqueTexto5 = new BloqueTexto();
 		bloqueTexto5.setOperacion("QUERY");
-		bloqueTexto5.setCoordenasMatriz("1 1 1 3 3 3");
+		bloqueTexto5.setCoordenadasMatriz("1 1 1 3 3 3");
 		listaBloqueTextos.add(bloqueTexto5);
 		
 		BloqueMatriz bloqueMatriz1 = new BloqueMatriz();

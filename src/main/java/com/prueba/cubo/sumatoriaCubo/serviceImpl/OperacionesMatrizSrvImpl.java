@@ -44,9 +44,9 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 			
 			for(BloqueTexto bloqueTexto:bloqueMatriz.getListaBloqueTextos()) {
 				
-				if(bloqueTexto.getCoordenasMatriz() != null) {
+				if(bloqueTexto.getCoordenadasMatriz() != null) {
 					
-					String[] vectorTexto = bloqueTexto.getCoordenasMatriz().split(" ");
+					String[] vectorTexto = bloqueTexto.getCoordenadasMatriz().split(" ");
 					
 					if(bloqueTexto.getOperacion().equals(IConstantes.UPDATE)) {
 						actualizarMatriz(vectorTexto,bloqueMatriz.getTamanioMatriz());
