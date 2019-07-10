@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.prueba.cubo.sumatoriaCubo.model.BloqueMatriz;
+import com.prueba.cubo.sumatoriaCubo.model.BloqueTexto;
 import com.prueba.cubo.sumatoriaCubo.model.Cubo;
 import com.prueba.cubo.sumatoriaCubo.service.IOperacionesMatrizSrv;
 
@@ -17,7 +18,6 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 	private int x1;
 	private int y1;
 	private int z1;
-	
 	private int x2;
 	private int y2;
 	private int z2;
@@ -26,39 +26,27 @@ public class OperacionesMatrizSrvImpl implements IOperacionesMatrizSrv {
 		
 		List<Integer> listaResultados = new ArrayList<>();
 		
-		int posicion = 0;
-		int cantOperacion = 0;
-		int contadorRecorrido = 0;
 		int numResulta;
 		
 		for(BloqueMatriz bloqueMatriz:cubo.getListaBloqueMatriz()) {
 			
 			inicializarMatriz(bloqueMatriz.getTamanioMatriz());
 			
-			cantOperacion = bloqueMatriz.getCantidadOperacion();
-			
-			contadorRecorrido += cantOperacion;
-			
-			for(int k = posicion; k<= contadorRecorrido - 1; k++) {
+			for(BloqueTexto bloqueTexto:bloqueMatriz.getListaBloqueTextos()) {
 				
-				if(bloqueMatriz.getListaBloqueTextos() != null 
-					&& bloqueMatriz.getListaBloqueTextos().get(k).getCoordenasMatriz() != null) {
+				if(bloqueTexto.getCoordenasMatriz() != null) {
 					
-					String[] vectorTexto = bloqueMatriz.getListaBloqueTextos().get(k).getCoordenasMatriz().split(" ");
+					String[] vectorTexto = bloqueTexto.getCoordenasMatriz().split(" ");
 					
-					String operacion =  bloqueMatriz.getListaBloqueTextos().get(k).getOperacion();
-					
-					if(operacion.equals("UPDATE")) {
+					if(bloqueTexto.getOperacion().equals("UPDATE")) {
 						actualizarMatriz(vectorTexto);
 						
-					}else if(operacion.equals("QUERY")) {
+					}else if(bloqueTexto.getOperacion().equals("QUERY")) {
 						
 						numResulta = calculoSuma(vectorTexto);
 						listaResultados.add(numResulta);
 					}
 				}
-
-		    	posicion++;
 		    }
 		}
 		
