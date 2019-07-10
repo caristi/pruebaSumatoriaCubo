@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui" lang="es">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Sumatoria de cubo</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+           <p:panel header="Cubo Detalle">
+               <h:panelGrid columns="1">
+               
+                   <p:outputLabel for="cantCasos" value="Cantidad casos: " />
+                   <p:inputNumber id="cantCasos" value="#{cuboController.cubo.numeroCasosPrueba}" decimalPlaces="0">
+                     <p:ajax event="change" listener="#{cuboController.habilitaCantidadCasos}" update="@form" process="@form"/>
+                   </p:inputNumber>
+               </h:panelGrid>
+               
+               <p:dataGrid var="bloque" value="#{cuboController.cubo.listaBloqueMatriz}" > 
+        	 		<f:facet name="header">
+		           	  <p:row>
+		           	   	<p:column colspan="2">Operaciones</p:column>
+		           	  </p:row>
+	           	   </f:facet>
+	           	   <p:panel header="#{bloque.numero}" style="text-align:center">
+			            <h:panelGrid columns="2" style="width:100%">
+			 
+			                <h:outputLabel for="tamCasos" value="Tamaño Matriz" />
+			                <p:inputNumber id="tamCasos" value="#{bloque.tamanioMatriz}" decimalPlaces="0"/>
+			                
+			                <h:outputLabel for="cantOperaciones" value="Cantidad operaciones" />
+			                <p:inputNumber id="cantOperaciones" value="#{bloque.cantidadOperacion}" decimalPlaces="0">
+			                  <p:ajax listener="#{cuboController.habilitarBloqueTextos(bloque)}" update="bloqueOperacion"/>
+			                </p:inputNumber>
+			            </h:panelGrid>
+		        	</p:panel>
+		        	
+		        	<p:dataGrid id="bloqueOperacion" var="tex" value="#{bloque.listaBloqueTextos}" columns="1"> 
+		        		 <h:panelGrid columns="3" style="width:100%">
+			        		 <h:outputLabel for="operacion" value="texto" />
+			        		 <p:selectOneMenu id="operacion" value="#{tex.operacion}">
+					            <f:selectItem itemLabel="Seleccione..." itemValue="" />
+					            <f:selectItem itemLabel="UPDATE" itemValue="UPDATE" />
+					            <f:selectItem itemLabel="QUERY" itemValue="QUERY" />
+					         </p:selectOneMenu>
+					         <p:inputMask value="#{tex.coordenasMatriz}"/>
+				        </h:panelGrid>
+		        	</p:dataGrid>
+		       </p:dataGrid> 
+		       
+		        <p:commandButton value="Calcular" action="#{cuboController.calcular}" update="dlResultado" />
+		        
+		         <p:dataList id="dlResultado" value="#{cuboController.listaResultados}" var="resul">
+			        <f:facet name="header">
+			            Resultados
+			        </f:facet>
+			         <p:inputText value="#{resul}" disabled="true"/>
+			    </p:dataList>
+           </p:panel>
+       </h:form>
+</h:body>
+</html>
